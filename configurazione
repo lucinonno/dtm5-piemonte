@@ -1,0 +1,20 @@
+# Directory che contiene i file zippati del Dtm5 scaricati
+sdtm="DTM5"
+
+# Directory che contiene i file Tif del Dtm5 non zippati
+tif="TIF"
+
+# Directory che contiene i file SHP delle singole sezioni con le curve
+curve="CURVE-SHP"
+
+# Directory che contiene il file SHP della regione con le curve
+regione="CURVE-SHP_REGIONE"
+
+#inserimento del copyriht dei dati DTM
+copycurve="Curve di livello realizzate da Lucio Galosso, basata sul dataset DTM 2009-2011 Piemonte ICE della Regione Piemonte"
+
+#La Regione Piemonte chiede che nell'attribuzione della licenza compaia il nome di chi realizza la mappa
+#Inserisci il tuo nome al posto di "Lucio Galosso"
+
+
+
