@@ -1,0 +1,2 @@
+“Base cartografica realizzata da [Licenziatario], basata sul dataset DTM 2009-2011
+Piemonte ICE della Regione Piemonte”

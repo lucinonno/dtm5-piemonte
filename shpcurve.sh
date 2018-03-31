@@ -26,6 +26,10 @@ else
 fi
 
 
+#rimuove i files presenti eventualmente presenti nella cartella
+rm $curve/*
+
+
 #si sposta nella cartella delle immagini
 cd $tif
 
@@ -61,3 +65,9 @@ for filename in *.vrt.* ; do mv $filename Curve_$filename; done
 rename 's/.vrt//g' *.vrt.*
 
 cd ..
+
+
+#prepara la cartella con le mappe e la documentazione della versione per GPS
+
+cp -r ./Documentazione ./$CURVE/
+
