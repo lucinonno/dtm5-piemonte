@@ -26,6 +26,8 @@ Prerequisiti
 
 Per poter creare le varie parti serve avere i pacchetti:
 
+rename
+
 gdal-bin
 
 
@@ -37,12 +39,13 @@ Nello specchietto sottostante riporto quanta memoria occupano le varie parti.
 2.9 Gb per i file zip del DTM
 4.7 Gb per i file Tif (nativi) scompattati
 4.5 Gb per i file delle sezioni in formato SHP
+4.3 Gb per il file della regione in formato SHP
 
 
 Passo delle curve
 =================
 
-Il passo verticale di taglio per l'ottenimento delle curve è impostato a 10 metri, se volete un passo diverso bisogna andare a variare la stringa (alla riga 50) 'gdal_contour -b 1 -a name -i 10.0 -f "ESRI Shapefile" "$i" "../$curve/$i.shp"' all'interno dello script "shpcurve.sh" e mettere al posto di 10.0 il valore desiderato.
+Il passo verticale di taglio per l'ottenimento delle curve è impostato a 10 metri, se volete un passo diverso bisogna andare a variare la stringa (alla riga 57) 'gdal_contour -b 1 -a name -i 10.0 -f "ESRI Shapefile" "$i" "../$curve/$i.shp"' all'interno dello script "shpcurve.sh" e mettere al posto di 10.0 il valore desiderato.
 
 
 Variabili

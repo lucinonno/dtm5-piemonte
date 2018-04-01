@@ -1,10 +1,13 @@
 #!/bin/bash
 
+# script per la creazione delle curve di livello per le singole sezioni
+
+
 #carica il file di configuraione delle variabili
 source "./configurazione"
 
 
-#verifica che sia presente la cartella con i file sorgenti del Dtm5
+#verifica che sia presente la cartella con i file zippati e sorgenti del Dtm5
 if [[ ! -d $sdtm ]]
 then
   echo "Non esiste la cartella $sdtm, fai girare lo script scaricadtm.sh prima di questo"
@@ -18,7 +21,7 @@ then
 fi
 
 
-#verifica la presenza delle cartella dei file SHP e la crea se non è già esistente
+#verifica la presenza delle cartella per i file SHP e la crea se non è già esistente
 if [ -d $curve ]; then
     echo "OK - $curve esiste."
 else
@@ -26,7 +29,7 @@ else
 fi
 
 
-#rimuove i files presenti eventualmente presenti nella cartella
+#rimuove i file eventualmente presenti nella cartella
 rm $curve/*
 
 
@@ -59,15 +62,18 @@ done
 #si sposta nella cartella delle curve in formato SHP
 cd ../$curve/
 
+
 #rinomina i file SHP
 for filename in *.vrt.* ; do mv $filename Curve_$filename; done
 
+
+#rinomina i file
 rename 's/.vrt//g' *.vrt.*
 
+
+#ritorna nella cartella principale
 cd ..
 
 
-#prepara la cartella con le mappe e la documentazione della versione per GPS
-
-cp -r ./Documentazione ./$CURVE/
-
+#copia la cartella documentazione nella cartella delle curve in formato SHP
+cp -r ./Documentazione ./$curve/

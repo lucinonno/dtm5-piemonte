@@ -1,9 +1,13 @@
 #!/bin/bash
 
+#file per unire tutte le sezioni in formato shp in un unico file
+
+
 #carica il file di configuraione delle variabili
 source "./configurazione"
 
 
+#verifica che sia presente la cartella con le sezioni in formato SHP
 if [[ ! -d $curve ]]
 then
   echo "Non esiste la cartella $curve, fai girare lo script shpcurve.sh prima di questo"
@@ -11,46 +15,57 @@ then
 fi
 
 
-#verifica la presenza delle cartella dei file SHP e la crea se non è già esistente
+#crea la cartella per il file unito se non è già esistente
 if [ -d $regione ]; then
-    echo "OK - $regione esiste."
+    echo "$regione esiste."
 else
     mkdir $regione
 fi
 
 
-#si sposta nella cartella delle immagini
-cd $tif
+#rimuove i file eventualmente presenti nella cartella
+rm -r $regione/*
 
 
-#crea un file vrt per ogni sezione
-for i in $(find -name "*.tif")  
-	 do
-	 echo "creo il file vrt per $i"
-gdalbuildvrt $i.vrt $i -a_srs "EPSG:32632"
+#si sposta nella cartella dei file delle sezioni
+cd $curve
 
+
+#prende i file, pulisce la stringa del nome e li unisce in un unico file
+for i in $(find . -type f -name "*.shp") 
+	 do  
+	  
+      #prende il nome del tipo di shp, togliendo dal primo all'ultimo _   
+	 tmp2=${i#*_}  
+	 tmp=`basename $tmp2`  
+	 echo $tmp  
+	 tipodishp=`echo "${tmp%\_*}"`  
+         echo $tipodishp  
+  
+
+   #unisce i file shp  
+      if [ -f "../$regione/$tipodishp.shp" ]  
+      then  
+           echo "unisce"  
+           ogr2ogr -f 'ESRI Shapefile' -update -append ../$regione/$tipodishp.shp $i	   
+      else  
+            echo "crea shp"  
+      ogr2ogr -f 'ESRI Shapefile' "../$regione/$tipodishp.shp" $i
+fi
 done
 
 
-#rinomina i file vrt
-rename 's/.tif.vrt/.vrt/g' *.tif.vrt
+#passa nella cartella del file della regione
+cd ../$regione
 
 
-#crea le curve
-for i in $(find -name "*.vrt")  
-	 do
-	 echo "creo le curve di livello per $i"
-gdal_contour -b 1 -a name -i 10.0 -f "ESRI Shapefile" "$i" "../$curve/$i.shp"
-
-done
+#rinomina il file
+rename 's/DTM5/Curve_DTM5_Regione/g' DTM5.*
 
 
-#si sposta nella cartella delle curve in formato SHP
-cd ../$curve/
-
-#rinomina i file SHP
-for filename in *.vrt.* ; do mv $filename Curve_$filename; done
-
-rename 's/.vrt//g' *.vrt.*
-
+#torna nella cartella principale
 cd ..
+
+
+#copia la cartella documentazione nella cartella delle curve della regione in formato SHP
+cp -r ./Documentazione ./$regione/

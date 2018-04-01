@@ -1,3 +1,6 @@
+# qui si trovano le principali variabili utilizzate nei vari script, ciò consente di cambiarle solamente qui e non in tutti gli script
+
+
 # Directory che contiene i file zippati del Dtm5 scaricati
 sdtm="DTM5"
 
@@ -10,10 +13,10 @@ curve="CURVE-SHP"
 # Directory che contiene il file SHP della regione con le curve
 regione="CURVE-SHP_REGIONE"
 
-#inserimento del copyriht dei dati DTM
+# inserimento del copyriht dei dati DTM
 copycurve="Curve di livello realizzate da Lucio Galosso, basata sul dataset DTM 2009-2011 Piemonte ICE della Regione Piemonte"
 
-#La Regione Piemonte chiede che nell'attribuzione della licenza compaia il nome di chi realizza la mappa
+# La Regione Piemonte chiede che nell'attribuzione della licenza compaia il nome di chi realizza la mappa
 #Inserisci il tuo nome al posto di "Lucio Galosso"
 
 

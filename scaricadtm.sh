@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# script per il download delle sezioni per la successiva lavorazione
+
+
 #carica il file di configuraione delle variabili
 source "./configurazione"
 
@@ -20,31 +23,39 @@ else
 fi
 
 
-#rimuove i files presenti eventualmente presenti nelle cartelle
+#rimuove i files eventualmente presenti nelle cartelle
 rm $sdtm/*
 rm $tif/*
 
 
+#si sposta nella cartella in cui saranno scaricati i file zippati
 cd $sdtm
 
 
-#ciclo di scaricamento 
+#inizia il ciclo di scaricamento e lo ripete finchè ci sono sezioni indicate nel file di scarico
+#puoi cambiare il file di scarico con uno di quelli presenti nella cartella oppure crearne uno tuo e salvarlo nella cartella, per far leggere il tuo oppure un'altro cambia il file Regione.txt qui sotto e metti quello che ti interessa
+
+#legge il codice della sezione da scaricare 
 cat ../Scarico/Regione.txt | \
 while read riga; do
 echo $riga
 
-#prende il codice del comune
+#prende il codice della sezione
 codice=`echo $riga | cut -d " " -f 1`
 
-#scarica il file
+#scarica il file selezionato
 wget -nc http://www.datigeo-piem-download.it/static/regp01/DTM5_ICE/RIPRESA_AEREA_ICE_2009_2011_DTM-SDO_CTR_FOGLI50-$codice-EPSG32632-TIF.zip
 
 done 
 
 
+#passa nella cartella dei file scompattati
 cd ../$tif
+
 
 #scompatta il file hillshading
 unzip -o ../$sdtm/\*.zip
 
+
+#torna nella cartella principale
 cd ..
