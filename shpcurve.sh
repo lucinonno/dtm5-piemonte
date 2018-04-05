@@ -30,7 +30,11 @@ fi
 
 
 #rimuove i file eventualmente presenti nella cartella
-rm $curve/*
+rm -r $curve/*
+
+
+#rimuove i file vrt eventualmente presenti nella cartella delle immagini
+rm $tif/*.vrt
 
 
 #si sposta nella cartella delle immagini
@@ -54,7 +58,7 @@ rename 's/.tif.vrt/.vrt/g' *.tif.vrt
 for i in $(find -name "*.vrt")  
 	 do
 	 echo "creo le curve di livello per $i"
-gdal_contour -b 1 -a name -i 10.0 -f "ESRI Shapefile" "$i" "../$curve/$i.shp"
+gdal_contour -b 1 -a name -i 10.0 -inodata -snodata 0 -f "ESRI Shapefile" "$i" "../$curve/$i.shp"
 
 done
 
@@ -75,5 +79,34 @@ rename 's/.vrt//g' *.vrt.*
 cd ..
 
 
+#rimuove i file vrt eventualmente presenti nella cartella delle immagini
+rm $tif/*.vrt
+
+
 #copia la cartella documentazione nella cartella delle curve in formato SHP
 cp -r ./Documentazione ./$curve/
+
+
+#si sposta nella cartella documentazione
+cd ./$curve/Documentazione
+
+
+#chiede il nome e cognome per l'attribuzione della licenza e lo inserisce nel file licenza.txt al posto di "Licenziatario"
+echo
+echo
+echo -n "inserisci il tuo nome e cognome per l'attribuzione: "
+read parola
+
+sed -i "s/Licenziatario/$parola/" Licenza.txt
+
+
+#converte il file Licenza.txt in PDF
+unoconv -f pdf Licenza.txt
+
+
+#rimuove il file Licenza.txt
+rm Licenza.txt
+
+
+#ritorna nella cartella principale
+cd ..

@@ -24,8 +24,8 @@ fi
 
 
 #rimuove i files eventualmente presenti nelle cartelle
-rm $sdtm/*
-rm $tif/*
+rm -r $sdtm/*
+rm -r $tif/*
 
 
 #si sposta nella cartella in cui saranno scaricati i file zippati

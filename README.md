@@ -28,6 +28,8 @@ Per poter creare le varie parti serve avere i pacchetti:
 
 rename
 
+unoconv
+
 gdal-bin
 
 
@@ -38,14 +40,16 @@ Nello specchietto sottostante riporto quanta memoria occupano le varie parti.
 
 2.9 Gb per i file zip del DTM
 4.7 Gb per i file Tif (nativi) scompattati
-4.5 Gb per i file delle sezioni in formato SHP
-4.3 Gb per il file della regione in formato SHP
+3.7 Gb per i file delle sezioni in formato SHP
+3.7 Gb per il file della regione in formato SHP
 
 
 Passo delle curve
 =================
 
 Il passo verticale di taglio per l'ottenimento delle curve è impostato a 10 metri, se volete un passo diverso bisogna andare a variare la stringa (alla riga 57) 'gdal_contour -b 1 -a name -i 10.0 -f "ESRI Shapefile" "$i" "../$curve/$i.shp"' all'interno dello script "shpcurve.sh" e mettere al posto di 10.0 il valore desiderato.
+
+Per la regione intera il passo verticale di taglio per l'ottenimento delle curve è impostato a 10 metri, se volete un passo diverso bisogna andare a variare la stringa (alla riga 49) 'gdal_contour -b 1 -a name -i 10.0 -f "ESRI Shapefile" Curve_DTM5_regione.vrt "../$regione/Curve_DTM5_regione.shp"' all'interno dello script "shpregione.sh" e mettere al posto di 10.0 il valore desiderato.
 
 
 Variabili
@@ -67,6 +71,4 @@ Sequenza per creare le curve di livello in formato SHP in un unico file
 
 scaricastm.sh scarica i file zip del DTM e li decomprime
 
-shpcurve.sh crea le curve a 10 metri delle sezioni al 50.000
-
-shpregione unisce tutte le sezioni in un unico file regionale
+shpregione.sh crea le curve a 10 metri in un unico file regionale
