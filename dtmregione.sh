@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#file per unire tutte le sezioni in formato shp in un unico file
+#file per creare il DTM in un mosaico regionale
 
 
 #carica il file di configuraione delle variabili
@@ -21,16 +21,16 @@ then
 fi
 
 
-#verifica la presenza delle cartella dei file SHP e la crea se non è già esistente
-if [ -d $regione ]; then
-    echo "OK - $regione esiste."
+#verifica la presenza delle cartella dei file DTM e la crea se non è già esistente
+if [ -d $dtmre ]; then
+    echo "OK - $dtmre esiste."
 else
-    mkdir $regione
+    mkdir $dtmre
 fi
 
 
 #rimuove i files eventualmente presenti nella cartella
-rm -r $regione/*
+rm -r $dtmre/*
 
 
 #rimuove i files vrt eventualmente presenti nella cartella delle immagini
@@ -42,14 +42,16 @@ cd $tif
 
 
 #crea un file vrt unico per la regione
-gdalbuildvrt Curve_DTM5_regione.vrt *.tif -a_srs "EPSG:32632"
+gdalbuildvrt DTM5_regione.vrt *.tif -a_srs "EPSG:32632"
 
 
-#crea le curve
-gdal_contour -b 1 -a name -i 10.0 -inodata -snodata 0 -f "ESRI Shapefile" Curve_DTM5_regione.vrt "../$regione/Curve_DTM5_regione.shp"
+#copia i file nella cartella di destinazione
+cp DTM5_regione.vrt ../$dtmre/
+cp *.tif ../$dtmre/
+cp *.tfw ../$dtmre/
 
 
-#ritorna nella cartella principale
+#si sposta nella cartella principale
 cd ..
 
 
@@ -58,11 +60,11 @@ rm $tif/*.vrt
 
 
 #copia la documentazione nella cartella dei file
-cp -r ./Documentazione ./$regione/
+cp -r ./Documentazione ./$dtmre/
 
 
 #si sposta nella cartella documentazione
-cd ./$regione/Documentazione
+cd ./$dtmre/Documentazione
 
 
 #chiede il nome e cognome per l'attribuzione della licenza e lo inserisce nel file licenza.txt al posto di "Licenziatario"

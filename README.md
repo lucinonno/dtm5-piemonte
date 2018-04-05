@@ -33,15 +33,22 @@ unoconv
 gdal-bin
 
 
-Memoria occupata
-================
+Memoria occupata (con le curve ogni 10 metri)
+=============================================
 
 Nello specchietto sottostante riporto quanta memoria occupano le varie parti.
 
 2.9 Gb per i file zip del DTM
+
 4.7 Gb per i file Tif (nativi) scompattati
+
 3.7 Gb per i file delle sezioni in formato SHP
+
 3.7 Gb per il file della regione in formato SHP
+
+4.7 Gb per i file DTM5 della regione mosaicata (un file vrt che mosaica tutta la regione)
+
+4.7 Gb per i file DTM5 della regione (un file vrt per ogni sezione, quindi apribili singolarmente)
 
 
 Passo delle curve

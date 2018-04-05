@@ -12,6 +12,12 @@ curve="CURVE-SHP"
 # Directory che contiene il file SHP della regione con le curve
 regione="CURVE-SHP_REGIONE"
 
+# Directory che contiene i file DTM, un file vrt che mosaica la regione
+dtmre="DTM_REGIONE"
+
+# Directory che contiene i file DTM, un file vrt che mosaica la regione
+dtm="DTM_SEZIONE"
+
 # inserimento della stringa per l'attribuzione dei dati DTM
 copycurve="Curve di livello realizzate da Licenziatario, basata sul dataset DTM 2009-2011 Piemonte ICE della Regione Piemonte"
 
