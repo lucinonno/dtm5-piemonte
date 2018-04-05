@@ -8,7 +8,22 @@ Il DTM (rete 5 metri) della regione (utilizzato per tutti i formati) è distribu
 I vari script girano su UBUNTU, una volta scaricato il modello e create le curve di livello possono essere visualizzate in Qgis e simili per molti scopi.
 
 Il tempo per il download dei 68 file zip che compongono il DTM del territtorio regionale dipendono dalla velocità della connessione a vostra disposizione.
-Ovviamente, se vi serve una ridotta porzione di territtorio, si può andare a selezionare il dowload delle sezioni interessate andando a selezionare la parte interessata nel file XXXXXX
+Ovviamente, se vi serve una ridotta porzione di territtorio, si può andare a selezionare il dowload delle sezioni interessate andando a selezionare la parte interessata nel file Regione.txt oppure è possibile creare altri file con le zone interessate.
+
+
+Descrizione degli script
+========================
+
+Sono presenti alcuni script che vanno a creare vari elementi cartografici partendo dal DTM della regione Piemonte, nello specifico si possono ottenere:
+
+	- Curve di livello in formato SHP, di base a 10 metri ma il parametro può essere variato, utilizzabili con QGIS ed altri sistemi GIS
+
+	- DTM, utilizzabile con QGIS ed altri sistemi GIS, Qmapshack, Qlandkarte ed altri software
+
+	- Rilievi ombreggiati, utilizzabile con QGIS ed altri sistemi GIS
+
+
+
 
 
 Descrizione del DTM utilizzato
@@ -24,7 +39,7 @@ urbanizzate).
 Prerequisiti
 ============
 
-Per poter creare le varie parti serve avere i pacchetti:
+Per poter creare le varie parti serve avere installati i pacchetti:
 
 rename
 
@@ -79,3 +94,21 @@ Sequenza per creare le curve di livello in formato SHP in un unico file
 scaricastm.sh scarica i file zip del DTM e li decomprime
 
 shpregione.sh crea le curve a 10 metri in un unico file regionale
+
+
+Sequenza per creare il DTM in un unico mosaico
+==============================================
+
+scaricastm.sh scarica i file zip del DTM e li decomprime
+
+dtmregione.sh crea il mosaico
+
+
+Sequenza per creare il DTM mantenendo le sezioni separate
+=========================================================
+
+scaricastm.sh scarica i file zip del DTM e li decomprime
+
+dtmsezione.sh crea i file per le singole sezioni
+
+
