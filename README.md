@@ -23,9 +23,6 @@ Sono presenti alcuni script che vanno a creare vari elementi cartografici parten
 	- Rilievi ombreggiati, utilizzabile con QGIS ed altri sistemi GIS
 
 
-
-
-
 Descrizione del DTM utilizzato
 ==============================
 
@@ -48,6 +45,10 @@ unoconv
 gdal-bin
 
 
+Uso della RAM/SWAP
+==================
+
+
 Memoria occupata (con le curve ogni 10 metri)
 =============================================
 
@@ -64,6 +65,10 @@ Nello specchietto sottostante riporto quanta memoria occupano le varie parti.
 4.7 Gb per i file DTM5 della regione mosaicata (un file vrt che mosaica tutta la regione)
 
 4.7 Gb per i file DTM5 della regione (un file vrt per ogni sezione, quindi apribili singolarmente)
+
+8.7 Gb per il rilievo ombreggiato (GeoTiff) della regione (un file unico di tutta la regione)
+
+8.7 Gb per i rilievi ombreggiati (GeoTiff) delle singole sezioni (un file per ogni sezione, quindi apribili singolarmente)
 
 
 Passo delle curve

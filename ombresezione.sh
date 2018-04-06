@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#file per creare il rilievo ombreggiato in un mosaico regionale
+#file per creare il rilievo ombreggiato per ogni sezione
 
 
 #carica il file di configuraione delle variabili
@@ -22,15 +22,15 @@ fi
 
 
 #verifica la presenza delle cartella dei rilievi ombreggiati e la crea se non è già esistente
-if [ -d $ombrere ]; then
-    echo "OK - $ombrere esiste."
+if [ -d $ombre ]; then
+    echo "OK - $ombre esiste."
 else
-    mkdir $ombrere
+    mkdir $ombre
 fi
 
 
 #rimuove i files eventualmente presenti nella cartella
-rm -r $ombrere/*
+rm -r $ombre/*
 
 
 #rimuove i files vrt eventualmente presenti nella cartella delle immagini
@@ -41,20 +41,37 @@ rm $tif/*.vrt
 cd $tif
 
 
-#crea un file vrt unico per la regione
-gdalbuildvrt OMBRE_regione.vrt *.tif -a_srs "EPSG:32632"
+#crea un file vrt per ogni sezione
+for i in $(find -name "*.tif")  
+	 do
+	 echo "creo il file vrt per $i"
+gdalbuildvrt $i.vrt $i -a_srs "EPSG:32632"
+
+done
 
 
-#crea il rilievo ombreggiato in un unico file
-gdaldem hillshade OMBRE_regione.vrt ../$ombrere/OMBRE_cut.tif -b 1
+#rinomina i file vrt
+rename 's/.tif.vrt/.vrt/g' *.tif.vrt
+
+
+#crea il rilievo ombreggiato per ogni sezione
+for i in $(find -name "*.vrt")  
+	 do
+	 echo "creo il rilievo ombreggiato per $i"
+gdaldem hillshade $i.vrt ../$ombre/$i*_cut.tif -b 1
+
+done
 
 
 #si sposta nella cartella di destinazione
-cd ../$ombrere
+cd ../$ombre
 
 
-#taglia il file creato con il confine della regione
-gdalwarp -ot Float32 -of GTiff -cutline ../Taglio/piemonte.shp -crop_to_cutline -dstnodata 0 OMBRE_cut.tif OMBRE_regione.tif
+#taglia i file creati con il confine della regione
+for i in $(find -name "*.tif")  
+	 do
+	 echo "taglio il rilievo ombreggiato $i"
+gdalwarp -ot Float32 -of GTiff -cutline ../Taglio/piemonte.shp -crop_to_cutline -dstnodata 0 $i*_cut.tif $i.tif
 
 
 #si sposta nella cartella principale
@@ -63,15 +80,15 @@ cd ..
 
 #rimuove i files vrt eventualmente presenti nella cartella delle immagini ed il file di servizio nella cartella dei rilievi ombreggiati
 rm $tif/*.vrt
-rm $ombrere/*cut.tif
+rm $ombre/*_cut.tif
 
 
 #copia la documentazione nella cartella dei file
-cp -r ./Documentazione ./$ombrere/
+cp -r ./Documentazione ./$ombre/
 
 
 #si sposta nella cartella documentazione
-cd ./$ombrere/Documentazione
+cd ./$ombre/Documentazione
 
 
 #chiede il nome e cognome per l'attribuzione della licenza e lo inserisce nel file licenza.txt al posto di "Licenziatario"
