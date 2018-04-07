@@ -58,7 +58,7 @@ rename 's/.tif.vrt/.vrt/g' *.tif.vrt
 for i in $(find -name "*.vrt")  
 	 do
 	 echo "creo il rilievo ombreggiato per $i"
-gdaldem hillshade $i.vrt ../$ombre/$i*_cut.tif -b 1
+gdaldem hillshade $i ../$ombre/$i.tif -b 1
 
 done
 
@@ -67,20 +67,17 @@ done
 cd ../$ombre
 
 
-#taglia i file creati con il confine della regione
-for i in $(find -name "*.tif")  
-	 do
-	 echo "taglio il rilievo ombreggiato $i"
-gdalwarp -ot Float32 -of GTiff -cutline ../Taglio/piemonte.shp -crop_to_cutline -dstnodata 0 $i*_cut.tif $i.tif
+#rinomina i file tif
+rename 's/.vrt.tif/.tif/g' *.tif
+rename 's/DTM5/Ombre_DTM5/g' *.tif
 
 
 #si sposta nella cartella principale
 cd ..
 
 
-#rimuove i files vrt eventualmente presenti nella cartella delle immagini ed il file di servizio nella cartella dei rilievi ombreggiati
+#rimuove i files vrt eventualmente presenti nella cartella delle immagini
 rm $tif/*.vrt
-rm $ombre/*_cut.tif
 
 
 #copia la documentazione nella cartella dei file

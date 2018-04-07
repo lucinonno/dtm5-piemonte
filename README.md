@@ -48,6 +48,10 @@ gdal-bin
 Uso della RAM/SWAP
 ==================
 
+La RAM non viene particolarmente sfruttata ad eccezione:
+
+11 Gb nella creazione delle curve in formato SHP della regione intera
+
 
 Memoria occupata (con le curve ogni 10 metri)
 =============================================
@@ -66,9 +70,9 @@ Nello specchietto sottostante riporto quanta memoria occupano le varie parti.
 
 4.7 Gb per i file DTM5 della regione (un file vrt per ogni sezione, quindi apribili singolarmente)
 
-8.7 Gb per il rilievo ombreggiato (GeoTiff) della regione (un file unico di tutta la regione)
+4.2 Gb per il rilievo ombreggiato (GeoTiff) della regione (un file unico di tutta la regione)
 
-8.7 Gb per i rilievi ombreggiati (GeoTiff) delle singole sezioni (un file per ogni sezione, quindi apribili singolarmente)
+1.2 Gb per i rilievi ombreggiati (GeoTiff) delle singole sezioni (un file per ogni sezione, quindi apribili singolarmente)
 
 
 Passo delle curve
@@ -88,7 +92,7 @@ Tutte le variabili comuni (cartelle, percorsi di file, ecc) contenute all'intern
 Sequenza per creare le curve di livello in formato SHP
 ======================================================
 
-scaricastm.sh scarica i file zip del DTM e li decomprime
+scaricadtm.sh scarica i file zip del DTM e li decomprime
 
 shpcurve.sh crea le curve a 10 metri delle sezioni al 50.000
 
@@ -96,7 +100,7 @@ shpcurve.sh crea le curve a 10 metri delle sezioni al 50.000
 Sequenza per creare le curve di livello in formato SHP in un unico file
 =======================================================================
 
-scaricastm.sh scarica i file zip del DTM e li decomprime
+scaricadtm.sh scarica i file zip del DTM e li decomprime
 
 shpregione.sh crea le curve a 10 metri in un unico file regionale
 
@@ -104,7 +108,7 @@ shpregione.sh crea le curve a 10 metri in un unico file regionale
 Sequenza per creare il DTM in un unico mosaico
 ==============================================
 
-scaricastm.sh scarica i file zip del DTM e li decomprime
+scaricadtm.sh scarica i file zip del DTM e li decomprime
 
 dtmregione.sh crea il mosaico
 
@@ -112,8 +116,22 @@ dtmregione.sh crea il mosaico
 Sequenza per creare il DTM mantenendo le sezioni separate
 =========================================================
 
-scaricastm.sh scarica i file zip del DTM e li decomprime
+scaricadtm.sh scarica i file zip del DTM e li decomprime
 
 dtmsezione.sh crea i file per le singole sezioni
 
 
+Sequenza per creare il rilievo ombreggiato mantenendo le sezioni separate
+=========================================================================
+
+scaricadtm.sh scarica i file zip del DTM e li decomprime
+
+ombresezione.sh crea i file per le singole sezioni
+
+
+Sequenza per creare il rilievo ombreggiato in un unico file
+===========================================================
+
+scaricadtm.sh scarica i file zip del DTM e li decomprime
+
+ombreregione.sh crea il mosaico
