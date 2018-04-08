@@ -22,6 +22,8 @@ Sono presenti alcuni script che vanno a creare vari elementi cartografici parten
 
 	- Rilievi ombreggiati, utilizzabile con QGIS ed altri sistemi GIS
 
+	- Curve di livello in formato img Garmin, utilizzabile su GPS escursionistici Garmin
+
 
 Descrizione del DTM utilizzato
 ==============================
@@ -102,7 +104,7 @@ Sequenza per creare le curve di livello in formato SHP in un unico file
 
 scaricadtm.sh scarica i file zip del DTM e li decomprime
 
-shpregione.sh crea le curve a 10 metri in un unico file regionale
+shpregione.sh crea le curve in un unico file regionale
 
 
 Sequenza per creare il DTM in un unico mosaico
@@ -134,4 +136,14 @@ Sequenza per creare il rilievo ombreggiato in un unico file
 
 scaricadtm.sh scarica i file zip del DTM e li decomprime
 
-ombreregione.sh crea il mosaico
+ombreregione.sh crea il rilievo ombreggiato in un unico file e lo ritaglia sul confine effettivo della regione
+
+
+Sequenza per creare le curve di livello in formato Garmin
+=========================================================
+
+scaricadtm.sh scarica i file zip del DTM e li decomprime
+
+shpregione.sh crea le curve in un unico file regionale
+
+shpgarmin.sh converte le curve in formato SHP e le converte in formato Garmin

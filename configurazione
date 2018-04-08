@@ -24,9 +24,42 @@ ombrere="OMBRE_REGIONE"
 # Directory che contiene i rilievi ombreggiati delle varie sezioni
 ombre="OMBRE_SEZIONE"
 
-# inserimento della stringa per l'attribuzione dei dati DTM
+# Directory che contiene i file OSM delle curve
+uscitaosm="CURVE-OSM
+
+
+
+
+#inserimento del copyriht dei dati DTM
 copycurve="Curve di livello realizzate da Licenziatario, basata sul dataset DTM 2009-2011 Piemonte ICE della Regione Piemonte"
 
+#La Regione Piemonte chiede che nell'attribuzione della licenza compaia il nome di chi realizza la mappa
+#Inserisci il tuo nome al posto di "Licenziatario"
 
 
+
+
+#Variabili creazione mappa Garmin
+
+
+#Percorso completo del file ogr2osm.py
+ogr2osm=~/ogr2osm/ogr2osm.py
+
+#Percorso completo di Osmosis
+osmosis=~/osmosis/bin/osmosis
+
+#Percorso completo di Mkgmap
+mkgmap=~/mkgmap-r3880/mkgmap.jar
+
+#Percorso completo di Splitter
+splitter=~/splitter-r580/splitter.jar
+
+#Allocazione quantità Ram da utilizzare per splitter e mkgmap
+Xmx=-Xmx15000M
+
+#File di testo padre dei file typ
+TYPFILE_VERSION="bdtre"
+
+#Percorso comleto di Gmaptool
+GMT=~/gmt/gmt
 

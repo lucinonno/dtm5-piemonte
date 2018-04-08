@@ -54,7 +54,7 @@ cd ../$ombrere
 
 
 #taglia il file creato con il confine della regione
-gdalwarp -ot Float32 -of GTiff -cutline ../Taglio/piemonte.shp -crop_to_cutline -dstnodata 0 -co COMPRESS=PACKBITS OMBRE_cut.tif OMBRE_regione.tif
+gdalwarp -ot Float32 -of GTiff -cutline ../Taglio/Shp/Piemonte.shp -crop_to_cutline -dstnodata 0 -co COMPRESS=PACKBITS OMBRE_cut.tif OMBRE_regione.tif
 
 
 #si sposta nella cartella principale
