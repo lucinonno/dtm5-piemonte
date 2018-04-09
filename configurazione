@@ -25,8 +25,13 @@ ombrere="OMBRE_REGIONE"
 ombre="OMBRE_SEZIONE"
 
 # Directory che contiene i file OSM delle curve
-uscitaosm="CURVE-OSM
+uscitaosm="CURVE-OSM"
 
+# Directory che contiene i file IMG delle curve
+uscitaimg="CURVE-IMG"
+
+#shp da usare:
+sdu="DTM5"
 
 
 
@@ -39,7 +44,7 @@ copycurve="Curve di livello realizzate da Licenziatario, basata sul dataset DTM 
 
 
 
-#Variabili creazione mappa Garmin
+#percorsi dei tool per la creazione della parte Garmin
 
 
 #Percorso completo del file ogr2osm.py
@@ -58,8 +63,7 @@ splitter=~/splitter-r580/splitter.jar
 Xmx=-Xmx15000M
 
 #File di testo padre dei file typ
-TYPFILE_VERSION="bdtre"
+TYPFILE_VERSION="curve"
 
 #Percorso comleto di Gmaptool
 GMT=~/gmt/gmt
-

@@ -40,11 +40,30 @@ Prerequisiti
 
 Per poter creare le varie parti serve avere installati i pacchetti:
 
+Conversione raster e SHP
+
 rename
 
 unoconv
 
 gdal-bin
+
+
+Conversione Garmin
+
+python-gdal
+
+osmctools
+
+osmosis
+
+osm2ogr
+
+mkgmap
+
+splitter
+
+gmt
 
 
 Uso della RAM/SWAP
@@ -53,28 +72,6 @@ Uso della RAM/SWAP
 La RAM non viene particolarmente sfruttata ad eccezione:
 
 11 Gb nella creazione delle curve in formato SHP della regione intera
-
-
-Memoria occupata (con le curve ogni 10 metri)
-=============================================
-
-Nello specchietto sottostante riporto quanta memoria occupano le varie parti.
-
-2.9 Gb per i file zip del DTM
-
-4.7 Gb per i file Tif (nativi) scompattati
-
-3.7 Gb per i file delle sezioni in formato SHP
-
-3.7 Gb per il file della regione in formato SHP
-
-4.7 Gb per i file DTM5 della regione mosaicata (un file vrt che mosaica tutta la regione)
-
-4.7 Gb per i file DTM5 della regione (un file vrt per ogni sezione, quindi apribili singolarmente)
-
-4.2 Gb per il rilievo ombreggiato (GeoTiff) della regione (un file unico di tutta la regione)
-
-1.2 Gb per i rilievi ombreggiati (GeoTiff) delle singole sezioni (un file per ogni sezione, quindi apribili singolarmente)
 
 
 Passo delle curve
@@ -144,6 +141,6 @@ Sequenza per creare le curve di livello in formato Garmin
 
 scaricadtm.sh scarica i file zip del DTM e li decomprime
 
-shpregione.sh crea le curve in un unico file regionale
+shpregione.sh crea le curve in formato SHP in un unico file regionale
 
-shpgarmin.sh converte le curve in formato SHP e le converte in formato Garmin
+shpaosm.sh converte le curve in formato OSM
