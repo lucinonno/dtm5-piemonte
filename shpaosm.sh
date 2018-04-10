@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#script per la creazione delle curve in formato Garmin
+#script per la creazione delle curve in formato OSM
 
 
 #carica il file di configuraione delle variabili
@@ -31,21 +31,40 @@ rm -r $uscitaosm/*
 id=993937119999
 
 
-#si sposta nella cartella delle curve in formato SHP
+#si sposta nella cartella delle curve della regione
 cd $regione
 
 
-#converte le curve in formato OSM
-python $ogr2osm --positive-id --id=$id --add-version --add-timestamp --force Curve_DTM5_regione.shp -o "../$uscitaosm/Curve_DTM5_regione.osm"
+# converte in OSM
+for tipo in $sdu
+do 
+
+
+for s in $(find -name "*$tipo*.shp" | cut -c3-)
+	 do
+	 echo "converto $s"
+	 #converte in osm
+nomeuscita=`basename $s`
+python $ogr2osm --positive-id --id=$id --add-version --add-timestamp --force ./$s -o "../$uscitaosm/$nomeuscita.osm" 
 
 
 #converte in pbf
-$osmosis --rx Curve_DTM5_regione.osm --wb Curve_DTM5:regione.pbf omitmetadata=true
-
-
-#cancella il file in formato OSM
+$osmosis --rx ../$uscitaosm/$nomeuscita.osm --wb ../$uscitaosm/$nomeuscita.pbf omitmetadata=true
 rm ../$uscitaosm/$nomeuscita.osm
 
 
 id=`expr $id + 9000000`
+done
+done
 
+
+#si sposta nella cartella di uscita dei file in formato osm
+cd ../$uscitaosm
+
+
+#rinomina il file
+rename 's/.shp//g' *.shp.*
+
+
+#ritorna nella cartella principale
+cd ..
