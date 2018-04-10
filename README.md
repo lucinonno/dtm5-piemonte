@@ -73,6 +73,8 @@ La RAM non viene particolarmente sfruttata ad eccezione:
 
 11 Gb nella creazione delle curve in formato SHP della regione intera
 
+35 Gb per la conversione delle curve in formato OSM
+
 
 Passo delle curve
 =================
@@ -144,3 +146,5 @@ scaricadtm.sh scarica i file zip del DTM e li decomprime
 shpregione.sh crea le curve in formato SHP in un unico file regionale
 
 shpaosm.sh converte le curve in formato OSM
+
+osmaimg.sh converte le curve in formato IMG
