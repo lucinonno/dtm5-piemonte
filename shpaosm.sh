@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#script per la creazione delle curve in formato Garmin
+#script per la creazione delle curve in formato OSM
 
 
 #carica il file di configuraione delle variabili

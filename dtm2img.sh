@@ -1,5 +1,8 @@
 #! /bin/bash
 
+#script per la creazione delle curve in formato Garmin
+
+
 #carica il file di configuraione delle variabili
 source "./configurazione"
 
