@@ -77,11 +77,11 @@ sed -i "s/Licenziatario/$parola/" ./stile_garmin/curve_licenza.txt
 #ritaglia i dati sul confine della regione piemonte, all'interno dell cartella Taglio sono presenti anche i file delle province,
 #è possibile cambiare il poligono di taglio cambiando il nome PIEMONTE.poly con uno di quelli contenuti nella cartella
 
-  osmconvert $uscitaosm/Curve_DTM5_regione.pbf -B=./Taglio/Poly/Piemonte.poly --drop-broken-refs -o=$uscitaosm/Curve_DTM5_cut.pbf
+#  osmconvert $uscitaosm/Curve_DTM5_regione.pbf -B=./Taglio/Poly/Piemonte.poly --drop-broken-refs -o=$uscitaosm/Curve_DTM5_cut.pbf
 
 
 java $Xmx -jar $splitter \
---max-nodes=2000000 \
+--max-nodes=1500000 \
 --max-areas=300 \
 --mapid=66140001 \
 --output-dir=$uscitaimg \
@@ -102,7 +102,7 @@ for infile in $uscitaimg/66140*.osm.pbf
     --output-dir=$uscitaimg \
     --style-file=stile_garmin/dtm_curve \
     --show-profiles=1 \
-    --draw-priority=30 \
+    --draw-priority=10 \
     --transparent \
     --license-file=stile_garmin/curve_licenza.txt \
   $infile

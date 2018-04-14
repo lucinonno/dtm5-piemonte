@@ -53,7 +53,8 @@ gdaldem hillshade OMBRE_regione.vrt ../$ombrere/OMBRE_cut.tif -b 1
 cd ../$ombrere
 
 
-#taglia il file creato con il confine della regione
+#ritaglia il rilievo ombreggiato sul confine della regione piemonte, all'interno dell cartella Taglio sono presenti anche i file delle province,
+#è possibile cambiare il poligono di taglio cambiando il nome Piemonte.shp con uno di quelli contenuti nella cartella
 gdalwarp -ot Float32 -of GTiff -cutline ../Taglio/Shp/Piemonte.shp -crop_to_cutline -dstnodata 0 -co COMPRESS=PACKBITS OMBRE_cut.tif OMBRE_regione.tif
 
 

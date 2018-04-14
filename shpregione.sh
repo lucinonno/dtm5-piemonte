@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#file per unire tutte le sezioni in formato shp in un unico file
+#file per creare le curve in formato shp in un unico file
 
 
 #carica il file di configuraione delle variabili
@@ -46,7 +46,22 @@ gdalbuildvrt Curve_DTM5_regione.vrt *.tif -a_srs "EPSG:32632"
 
 
 #crea le curve
-gdal_contour -b 1 -a name -i 10.0 -inodata -snodata 0 -f "ESRI Shapefile" Curve_DTM5_regione.vrt "../$regione/Curve_DTM5_regione.shp"
+gdal_contour -b 1 -a name -i 10.0 -inodata -snodata 0 -f "ESRI Shapefile" Curve_DTM5_regione.vrt "../$regione/Curve_DTM5.shp"
+
+
+#si sposta nella cartella del file con le curve
+cd ../$regione
+
+
+#ritaglia le curve sul confine della regione piemonte, all'interno dell cartella Taglio sono presenti anche i file delle province,
+#è possibile cambiare il poligono di taglio cambiando il nome Piemonte.shp con uno di quelli contenuti nella cartella
+echo
+echo Taglio le curve che sbordano oltre il confine della regione
+ogr2ogr -clipsrc ../Taglio/Shp/Piemonte.shp Curve_DTM5_regione.shp Curve_DTM5.shp
+
+
+#cancella il file più grande del confine della regione
+rm Curve_DTM5.*
 
 
 #ritorna nella cartella principale

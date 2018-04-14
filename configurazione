@@ -35,17 +35,19 @@ sdu="DTM5"
 
 
 
-#inserimento del copyriht dei dati DTM
-copycurve="Curve di livello realizzate da Licenziatario, basata sul dataset DTM 2009-2011 Piemonte ICE della Regione Piemonte"
-
 #La Regione Piemonte chiede che nell'attribuzione della licenza compaia il nome di chi realizza la mappa
-#Inserisci il tuo nome al posto di "Licenziatario"
 
+
+#Prende il nome inserito durante la domanda a video
+Licenziatario="$parola"
+
+
+#inserimento del copyriht dei dati DTM
+copycurve="Curve di livello realizzate da $Licenziatario, basata sul dataset DTM 2009-2011 Piemonte ICE della Regione Piemonte"
 
 
 
 #percorsi dei tool per la creazione della parte Garmin
-
 
 #Percorso completo del file ogr2osm.py
 ogr2osm=~/ogr2osm/ogr2osm.py
