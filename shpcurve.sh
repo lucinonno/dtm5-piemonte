@@ -57,7 +57,7 @@ rename 's/.tif.vrt/.vrt/g' *.tif.vrt
 #crea le curve
 for i in $(find -name "*.vrt")  
 	 do
-	 echo "creo le curve di livello per $i"
+	 echo "creo le curve di livello $i"
 gdal_contour -b 1 -a name -i 10.0 -inodata -snodata 0 -f "ESRI Shapefile" "$i" "../$curve/$i.shp"
 
 done
@@ -68,13 +68,27 @@ cd ../$curve/
 
 
 #rinomina i file SHP
-for filename in *.vrt.* ; do mv $filename Curve_$filename; done
+#for filename in *.vrt.* ; do mv $filename Curve_$filename; done
 
 
-#rinomina i file
+#rinomina i file SHP
 rename 's/.vrt//g' *.vrt.*
 
 
+#ritaglia le curve sul confine della regione piemonte, all'interno dell cartella Taglio sono presenti anche i file delle province,
+#è possibile cambiare il poligono di taglio cambiando il nome Piemonte.shp con uno di quelli contenuti nella cartella
+for i in $(find -name "*.shp")  
+	 do
+	 echo "taglio le curve $i oltreconfine"
+ogr2ogr -clipsrc ../Taglio/Shp/Piemonte.shp ./$curve/Curve_$i ./$curve/$i
+
+done
+
+
+#cancella i file più grandi
+rm DTM5_*.*
+
+ 
 #ritorna nella cartella principale
 cd ..
 

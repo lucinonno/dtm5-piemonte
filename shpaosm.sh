@@ -8,9 +8,9 @@ source "./configurazione"
 
 
 #verifica che sia presente la cartella con le curve
-if [[ ! -d $regione ]]
+if [[ ! -d $curve ]]
 then
-  echo "Non esiste la cartella $regione, fai girare lo script shpregione.sh prima di questo"
+  echo "Non esiste la cartella $curve, fai girare lo script shpcurve.sh prima di questo"
   exit 1
 fi
 
@@ -32,15 +32,11 @@ id=993937119999
 
 
 #si sposta nella cartella delle curve della regione
-cd $regione
+cd $curve
 
 
 # converte in OSM
-for tipo in $sdu
-do 
-
-
-for s in $(find -name "*$tipo*.shp" | cut -c3-)
+for s in $(find -name "*DTM5*.shp")
 	 do
 	 echo "converto $s"
 	 #converte in osm
@@ -62,7 +58,7 @@ done
 cd ../$uscitaosm
 
 
-#rinomina il file
+#rinomina i file
 rename 's/.shp//g' *.shp.*
 
 

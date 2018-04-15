@@ -46,6 +46,8 @@ gdalbuildvrt Curve_DTM5_regione.vrt *.tif -a_srs "EPSG:32632"
 
 
 #crea le curve
+echo
+echo Creo le curve della regione
 gdal_contour -b 1 -a name -i 10.0 -inodata -snodata 0 -f "ESRI Shapefile" Curve_DTM5_regione.vrt "../$regione/Curve_DTM5.shp"
 
 

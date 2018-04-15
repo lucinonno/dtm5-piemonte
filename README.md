@@ -66,22 +66,10 @@ splitter
 gmt
 
 
-Uso della RAM/SWAP
-==================
-
-La RAM non viene particolarmente sfruttata ad eccezione:
-
-11 Gb nella creazione delle curve in formato SHP della regione intera
-
-35 Gb per la conversione delle curve in formato OSM
-
-
 Passo delle curve
 =================
 
-Il passo verticale di taglio per l'ottenimento delle curve è impostato a 10 metri, se volete un passo diverso bisogna andare a variare la stringa (alla riga 57) 'gdal_contour -b 1 -a name -i 10.0 -f "ESRI Shapefile" "$i" "../$curve/$i.shp"' all'interno dello script "shpcurve.sh" e mettere al posto di 10.0 il valore desiderato.
-
-Per la regione intera il passo verticale di taglio per l'ottenimento delle curve è impostato a 10 metri, se volete un passo diverso bisogna andare a variare la stringa (alla riga 49) 'gdal_contour -b 1 -a name -i 10.0 -f "ESRI Shapefile" Curve_DTM5_regione.vrt "../$regione/Curve_DTM5_regione.shp"' all'interno dello script "shpregione.sh" e mettere al posto di 10.0 il valore desiderato.
+Il passo verticale di taglio per l'ottenimento delle curve è impostato a 10 metri, se volete un passo diverso bisogna andare a variare la stringa che contiene -i 10.0 all'interno degli script "shpcurve.sh" e "shpcurve.sh" e mettere al posto di 10.0 il valore desiderato.
 
 
 Variabili
