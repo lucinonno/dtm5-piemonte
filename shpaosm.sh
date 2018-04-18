@@ -51,7 +51,6 @@ rm ../$uscitaosm/$nomeuscita.osm
 
 id=`expr $id + 9000000`
 done
-done
 
 
 #si sposta nella cartella di uscita dei file in formato osm

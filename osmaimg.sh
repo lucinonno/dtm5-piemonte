@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 #script per la creazione delle curve in formato Garmin
 
@@ -35,7 +35,7 @@ then
 fi
 
 
-#verifica che sia presente la cartella con i file del BDTRE convertiti in OSM
+#verifica che sia presente la cartella con i file del DTM5 convertiti in OSM
 if [[ ! -d $uscitaosm ]]
 then
   echo "Non esiste la cartella $uscitaosm, fai girare lo script shpaosm.sh e uniscibdtre.sh prima di questo"
@@ -51,7 +51,7 @@ else
 fi
 
 
-#cancella i file nella directory
+#cancella i file eventualmente presenti nella cartella
 rm -r $uscitaimg/*
 
 
@@ -72,29 +72,81 @@ read parola
 sed -i "s/Licenziatario/$parola/" ./stile_garmin/curve_licenza.txt
 
 
-#ritaglia e converte le curve di livello in formato IMG
-
-#ritaglia i dati sul confine della regione piemonte, all'interno dell cartella Taglio sono presenti anche i file delle province,
-#è possibile cambiare il poligono di taglio cambiando il nome PIEMONTE.poly con uno di quelli contenuti nella cartella
-
-#  osmconvert $uscitaosm/Curve_DTM5_regione.pbf -B=./Taglio/Poly/Piemonte.poly --drop-broken-refs -o=$uscitaosm/Curve_DTM5_cut.pbf
+#copia i file delle curve in sezioni
+cp $uscitaosm/*.* $uscitaimg
 
 
-java $Xmx -jar $splitter \
---max-nodes=1500000 \
---max-areas=300 \
---mapid=66140001 \
---output-dir=$uscitaimg \
-$uscitaosm/Curve_DTM5_cut.pbf
+
+cd $uscitaimg
 
 
-for infile in $uscitaimg/66140*.osm.pbf
+
+
+    for filename in $(ls *.pbf); do
+
+       # vediamo che numero è il file, isolandolo tra l'underscore "_" e il punto "."
+       n=$(echo $filename | awk -F \_ {'print $2'} | awk -F \. {'print $1'})
+
+       # vedo quanto è grande il numero per aggiungere un numero appropriato di zeri
+       if [ $n -lt 9 ]; then
+          d="00$n"
+       else
+          if [ $n -lt 99 ]; then
+             d="0$n"
+          else
+             d="$n"
+          fi
+       fi
+
+       # quindi creiamo il nuovo filename
+       newfilename="file_$d.pbf"
+
+       # adesso hai il nuovo filename, con echo puoi fare una prova e vedere se lo script funziona correttamente
+       echo -e "$newfilename\t$filename "
+
+       # se lo script funziona, decommenta il comando mv, per procedere con la modfica dei nomi
+       # mv $filename $newfilename   
+
+       # quando esegui mv appare l'errore per i file con $n > 100, questo errore "mv: `file_155.png' and `file_155.png' are the same file"
+       # è giusto che sia così, se vuoi correggilo
+
+    done
+
+
+
+
+
+
+
+
+
+
+
+
+
+#rinomina i file PBF
+rename 's/Curve_DTM5_//g' *.pbf
+rename 's/19/019/' 19.pbf
+rename 's/20/020/' 20.pbf
+rename 's/35/035/' 35.pbf
+rename 's/36/036/' 36.pbf
+rename 's/51/051/' 51.pbf
+rename 's/52/052/' 52.pbf
+rename 's/53/053/' 53.pbf
+
+cd ..
+
+
+#converte le curve di livello in formato IMG
+
+
+for infile in $uscitaimg/*.pbf
   do
-  MAPNAME=$(basename $infile .osm.pbf)
+  MAPNAME=$(basename $infile .pbf)
   echo processing $MAPNAME
 
   java $Xmx -jar $mkgmap --code-page=1252 \
-    --mapname=$MAPNAME \
+    --mapname=66120$MAPNAME \
     --description="DTM5 Curve di livello" \
     --country-name="Italia" \
     --region-name="Piemonte" \
@@ -108,6 +160,8 @@ for infile in $uscitaimg/66140*.osm.pbf
   $infile
 done
 
+
+#cancella i file
 rm $uscitaimg/areas.*
 rm $uscitaimg/densities-out.txt
 rm $uscitaimg/temp*.*
@@ -144,7 +198,7 @@ done
 
 # ora creo i singoli livelli che comporranno la mappa
 # e definisco i singoli file:
-DTM5_Curve=$(ls $uscitaimg/66140*.img)
+DTM5_Curve=$(ls $uscitaimg/66120*.img)
 
 
 # make the target directory

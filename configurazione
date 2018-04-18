@@ -30,8 +30,6 @@ uscitaosm="CURVE-OSM"
 # Directory che contiene i file IMG delle curve
 uscitaimg="CURVE-IMG"
 
-#shp da usare:
-sdu="DTM5"
 
 
 

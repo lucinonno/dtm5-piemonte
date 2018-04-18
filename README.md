@@ -78,6 +78,18 @@ Variabili
 Tutte le variabili comuni (cartelle, percorsi di file, ecc) contenute all'interno del file configurazione, se si vogliono cambiare si cambiano una volta sola senda dover andare a cambiare le stesse cose all'interno di tutti gli script.
 
 
+Script in cui è previsto il taglio con file di confine
+======================================================
+
+scaricadtm.sh (si basa su un file di testo in cui sono presenti i numeri delle sezioni da scaricare
+
+ombreregione.sh
+
+shpcurve.sh
+
+shpregione.sh
+
+
 Sequenza per creare le curve di livello in formato SHP
 ======================================================
 
@@ -131,7 +143,7 @@ Sequenza per creare le curve di livello in formato Garmin
 
 scaricadtm.sh scarica i file zip del DTM e li decomprime
 
-shpregione.sh crea le curve in formato SHP in un unico file regionale
+shpcurve.sh crea le curve in formato SHP
 
 shpaosm.sh converte le curve in formato OSM
 

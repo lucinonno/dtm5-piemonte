@@ -59,7 +59,7 @@ cd ../$regione
 #è possibile cambiare il poligono di taglio cambiando il nome Piemonte.shp con uno di quelli contenuti nella cartella
 echo
 echo Taglio le curve che sbordano oltre il confine della regione
-ogr2ogr -clipsrc ../Taglio/Shp/Piemonte.shp Curve_DTM5_regione.shp Curve_DTM5.shp
+ogr2ogr -progress -clipsrc ../Taglio/Shp/Piemonte.shp Curve_DTM5_regione.shp Curve_DTM5.shp
 
 
 #cancella il file più grande del confine della regione

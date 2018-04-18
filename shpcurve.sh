@@ -64,11 +64,7 @@ done
 
 
 #si sposta nella cartella delle curve in formato SHP
-cd ../$curve/
-
-
-#rinomina i file SHP
-#for filename in *.vrt.* ; do mv $filename Curve_$filename; done
+cd ../$curve
 
 
 #rinomina i file SHP
@@ -80,15 +76,47 @@ rename 's/.vrt//g' *.vrt.*
 for i in $(find -name "*.shp")  
 	 do
 	 echo "taglio le curve $i oltreconfine"
-ogr2ogr -clipsrc ../Taglio/Shp/Piemonte.shp ./$curve/Curve_$i ./$curve/$i
+ogr2ogr -progress -clipsrc ../Taglio/Shp/Piemonte.shp $i.cut.shp $i
 
 done
+
+
+#crea la cartella per le curve tagliate
+mkdir tagliate
+
+
+#sposta i file
+mv *.cut.* tagliate/
 
 
 #cancella i file più grandi
 rm DTM5_*.*
 
+
+#si sposta nella cartelle dei file curve tagliate
+cd tagliate
+
+
+#rinomina i file SHP
+rename 's/.shp.cut//g' *.cut.*
+
+
+#rinomina i file SHP
+for filename in DTM5_*.* ; do mv $filename Curve_$filename; done
+
+
+#sposta i file
+mv Curve*.* ../
+
  
+#ritorna nella cartella delle curve
+cd ..
+
+
+#rimuove la cartella
+rm -r tagliate/
+
+
 #ritorna nella cartella principale
 cd ..
 
