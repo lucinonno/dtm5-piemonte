@@ -76,16 +76,16 @@ sed -i "s/Licenziatario/$parola/" ./stile_garmin/curve_licenza.txt
 cp $uscitaosm/*.* $uscitaimg
 
 
-
+#passa nella cartella dei file img
 cd $uscitaimg
 
 
-
-
+#ciclo che rinomina i file e rende i nomi con tre cifre, per cui il 19 diventa 019 ecc.....
+#oltre il numero 100 lascia il numero uguale ed elimina solo la parte testuale precedente il numero e l'estensione del file
     for filename in $(ls *.pbf); do
 
        # vediamo che numero è il file, isolandolo tra l'underscore "_" e il punto "."
-       n=$(echo $filename | awk -F \_ {'print $2'} | awk -F \. {'print $1'})
+       n=$(echo $filename | awk -F \Curve_DTM5_ {'print $2'} | awk -F \. {'print $1'})
 
        # vedo quanto è grande il numero per aggiungere un numero appropriato di zeri
        if [ $n -lt 9 ]; then
@@ -98,48 +98,20 @@ cd $uscitaimg
           fi
        fi
 
-       # quindi creiamo il nuovo filename
-       newfilename="file_$d.pbf"
+       # quindi crea il nuovo filename
+       newfilename="$d.pbf"
 
-       # adesso hai il nuovo filename, con echo puoi fare una prova e vedere se lo script funziona correttamente
-       echo -e "$newfilename\t$filename "
-
-       # se lo script funziona, decommenta il comando mv, per procedere con la modfica dei nomi
-       # mv $filename $newfilename   
-
-       # quando esegui mv appare l'errore per i file con $n > 100, questo errore "mv: `file_155.png' and `file_155.png' are the same file"
-       # è giusto che sia così, se vuoi correggilo
+       # il comando mv procede con la modfica dei nomi
+       mv $filename $newfilename   
 
     done
 
 
-
-
-
-
-
-
-
-
-
-
-
-#rinomina i file PBF
-rename 's/Curve_DTM5_//g' *.pbf
-rename 's/19/019/' 19.pbf
-rename 's/20/020/' 20.pbf
-rename 's/35/035/' 35.pbf
-rename 's/36/036/' 36.pbf
-rename 's/51/051/' 51.pbf
-rename 's/52/052/' 52.pbf
-rename 's/53/053/' 53.pbf
-
+#torna nella cartella principale
 cd ..
 
 
 #converte le curve di livello in formato IMG
-
-
 for infile in $uscitaimg/*.pbf
   do
   MAPNAME=$(basename $infile .pbf)

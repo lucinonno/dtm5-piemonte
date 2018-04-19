@@ -1,1 +1,1 @@
-“Curve di livello realizzate da Licenziatario, basata sul dataset DTM 2009-2011 Piemonte ICE della Regione Piemonte”
+Curve di livello realizzate da Licenziatario, basata sul dataset DTM 2009-2011 Piemonte ICE della Regione Piemonte
