@@ -40,18 +40,15 @@ Prerequisiti
 
 Per poter creare le varie parti serve avere installati i pacchetti:
 
-Conversione raster e SHP
-
 rename
 
 unoconv
 
 gdal-bin
 
-
-Conversione Garmin
-
 python-gdal
+
+openjdk 8
 
 osmctools
 

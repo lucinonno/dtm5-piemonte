@@ -44,6 +44,7 @@ cd $tif
 #crea un file vrt per ogni sezione
 for i in $(find -name "*.tif")  
 	 do
+	 echo
 	 echo "creo il file vrt per $i"
 gdalbuildvrt $i.vrt $i -a_srs "EPSG:32632"
 
@@ -57,6 +58,7 @@ rename 's/.tif.vrt/.vrt/g' *.tif.vrt
 #crea il rilievo ombreggiato per ogni sezione
 for i in $(find -name "*.vrt")  
 	 do
+	 echo
 	 echo "creo il rilievo ombreggiato per $i"
 gdaldem hillshade $i ../$ombre/$i.tif -b 1
 

@@ -44,6 +44,7 @@ cd $tif
 #crea un file vrt per ogni sezione
 for i in $(find -name "*.tif")  
 	 do
+	 echo
 	 echo "creo il file vrt per $i"
 gdalbuildvrt $i.vrt $i -a_srs "EPSG:32632"
 
@@ -55,6 +56,8 @@ rename 's/.tif.vrt/.vrt/g' *.tif.vrt
 
 
 #copia i file nella cartella di destinazione
+echo
+echo "copio i file nella cartella di destinazione"
 cp *.vrt ../$dtm/
 cp *.tif ../$dtm/
 cp *.tfw ../$dtm/

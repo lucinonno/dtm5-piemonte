@@ -42,10 +42,14 @@ cd $tif
 
 
 #crea un file vrt unico per la regione
+echo
+echo "creo il file vrt per l'intera regione"
 gdalbuildvrt OMBRE_regione.vrt *.tif -a_srs "EPSG:32632"
 
 
 #crea il rilievo ombreggiato in un unico file
+echo
+echo "creo il rilievo ombreggiato per l'intera regione"
 gdaldem hillshade OMBRE_regione.vrt ../$ombrere/OMBRE_cut.tif -b 1
 
 
@@ -55,6 +59,8 @@ cd ../$ombrere
 
 #ritaglia il rilievo ombreggiato sul confine della regione piemonte, all'interno dell cartella Taglio sono presenti anche i file delle province,
 #è possibile cambiare il poligono di taglio cambiando il nome Piemonte.shp con uno di quelli contenuti nella cartella
+echo
+echo "taglio il rilievo ombreggiato oltreconfine"
 gdalwarp -ot Float32 -of GTiff -cutline ../Taglio/Shp/Piemonte.shp -crop_to_cutline -dstnodata 0 -co COMPRESS=PACKBITS OMBRE_cut.tif OMBRE_regione.tif
 
 
