@@ -43,13 +43,13 @@ cd $tif
 
 #crea un file vrt unico per la regione
 echo
-echo "creo il file vrt per l'intera regione"
+echo "Creo il file vrt per l'intera regione"
 gdalbuildvrt DTM5_regione.vrt *.tif -a_srs "EPSG:32632"
 
 
 #copia i file nella cartella di destinazione
 echo
-echo "copio i file nella cartella di destinazione"
+echo "Copio i file nella cartella di destinazione"
 cp DTM5_regione.vrt ../$dtmre/
 cp *.tif ../$dtmre/
 cp *.tfw ../$dtmre/

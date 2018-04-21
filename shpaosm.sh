@@ -35,19 +35,18 @@ id=993937119999
 cd $curve
 
 
-# converte in OSM
+# converte i file
 for s in $(find -name "*DTM5*.shp")
 	 do
-	 echo "converto $s"
-	 #converte in osm
+	 echo
+	 echo "Converto in formato osm $s"
 nomeuscita=`basename $s`
 python $ogr2osm --positive-id --id=$id --add-version --add-timestamp --force ./$s -o "../$uscitaosm/$nomeuscita.osm" 
 
-
-#converte in pbf
+	 echo
+	 echo "Converto in formato il file in pbf"
 $osmosis --rx ../$uscitaosm/$nomeuscita.osm --wb ../$uscitaosm/$nomeuscita.pbf omitmetadata=true
 rm ../$uscitaosm/$nomeuscita.osm
-
 
 id=`expr $id + 9000000`
 done

@@ -13,9 +13,8 @@ f = open ( fn , 'rb' )
 # copyright messages are given as a list of tuples, the tuples contain
 # the relevant header bytes as ints and the actual strings.
 
-copyright = [ ( 0 , 3 , 'Curve di livello realizzate da Licenziatario, basata sul dataset DTM 2009-2011 Piemonte ICE della Regione Piemonte' ) ,
-              ( 0 , 3 , "dati openstreetmap: (c) openstreetmap.org contributors, see http://wiki.openstreetmap.org/index.php/attribution" ) ,
-              ( 15 , 3 , "Cartografia realizzata da Michele Marchello e Lucio Galosso, basato su BDTRE - Database GeoTopografico - 2016, Carta Tecnica Regionale vettoriale in scala 1:10.000 della Regione Piemonte, [edizione 1991-2005] e su dati openstreetmap" ) ]
+copyright = [ ( 0 , 3 , 'Curve di livello realizzate da $parola, basate sul dataset DTM 2009-2011 Piemonte ICE della Regione Piemonte' )
+
               
 content = ""
 

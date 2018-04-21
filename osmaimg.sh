@@ -115,7 +115,8 @@ cd ..
 for infile in $uscitaimg/*.pbf
   do
   MAPNAME=$(basename $infile .pbf)
-  echo processing $MAPNAME
+  echo
+  echo "Converto la sezione $MAPNAME in formato IMG"
 
   java $Xmx -jar $mkgmap --code-page=1252 \
     --mapname=66120$MAPNAME \
@@ -130,6 +131,7 @@ for infile in $uscitaimg/*.pbf
     --transparent \
     --license-file=stile_garmin/curve_licenza.txt \
   $infile
+
 done
 
 

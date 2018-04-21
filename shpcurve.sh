@@ -44,7 +44,8 @@ cd $tif
 #crea un file vrt per ogni sezione
 for i in $(find -name "*.tif")  
 	 do
-	 echo "creo il file vrt per $i"
+	 echo
+	 echo "Creo il file vrt per $i"
 gdalbuildvrt $i.vrt $i -a_srs "EPSG:32632"
 
 done
@@ -57,7 +58,8 @@ rename 's/.tif.vrt/.vrt/g' *.tif.vrt
 #crea le curve
 for i in $(find -name "*.vrt")  
 	 do
-	 echo "creo le curve di livello $i"
+	 echo
+	 echo "Creo le curve di livello $i"
 gdal_contour -b 1 -a name -i 10.0 -inodata -snodata 0 -f "ESRI Shapefile" "$i" "../$curve/$i.shp"
 
 done
@@ -75,7 +77,8 @@ rename 's/.vrt//g' *.vrt.*
 #è possibile cambiare il poligono di taglio cambiando il nome Piemonte.shp con uno di quelli contenuti nella cartella
 for i in $(find -name "*.shp")  
 	 do
-	 echo "taglio le curve $i oltreconfine"
+	 echo
+	 echo "Taglio le curve che sbordano oltre il confine della regione $i"
 ogr2ogr -progress -clipsrc ../Taglio/Shp/Piemonte.shp $i.cut.shp $i
 
 done
@@ -100,8 +103,6 @@ cd tagliate
 #rinomina i file SHP
 rename 's/.shp.cut//g' *.cut.*
 
-
-#rinomina i file SHP
 for filename in DTM5_*.* ; do mv $filename Curve_$filename; done
 
 

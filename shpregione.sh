@@ -42,12 +42,14 @@ cd $tif
 
 
 #crea un file vrt unico per la regione
+echo
+echo "Creo il file vrt"
 gdalbuildvrt Curve_DTM5_regione.vrt *.tif -a_srs "EPSG:32632"
 
 
 #crea le curve
 echo
-echo Creo le curve della regione
+echo "Creo le curve della regione"
 gdal_contour -b 1 -a name -i 10.0 -inodata -snodata 0 -f "ESRI Shapefile" Curve_DTM5_regione.vrt "../$regione/Curve_DTM5.shp"
 
 
@@ -58,7 +60,7 @@ cd ../$regione
 #ritaglia le curve sul confine della regione piemonte, all'interno dell cartella Taglio sono presenti anche i file delle province,
 #è possibile cambiare il poligono di taglio cambiando il nome Piemonte.shp con uno di quelli contenuti nella cartella
 echo
-echo Taglio le curve che sbordano oltre il confine della regione
+echo "Taglio le curve che sbordano oltre il confine della regione"
 ogr2ogr -progress -clipsrc ../Taglio/Shp/Piemonte.shp Curve_DTM5_regione.shp Curve_DTM5.shp
 
 
