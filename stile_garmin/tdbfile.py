@@ -13,7 +13,7 @@ f = open ( fn , 'rb' )
 # copyright messages are given as a list of tuples, the tuples contain
 # the relevant header bytes as ints and the actual strings.
 
-copyright = [ ( 0 , 3 , 'Curve di livello realizzate da $parola, basate sul dataset DTM 2009-2011 Piemonte ICE della Regione Piemonte' )
+copyright = [ ( 0 , 3 , "Curve di livello realizzate da $parola, basate sul dataset DTM 2009-2011 Piemonte ICE della Regione Piemonte" )
 
               
 content = ""

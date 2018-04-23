@@ -69,7 +69,7 @@ echo
 echo -n "inserisci il tuo nome e cognome per l'attribuzione: "
 read parola
 
-sed -i "s/Licenziatario/$parola/" ./stile_garmin/curve_licenza.txt
+sed -i "s/licenziatario/$parola/" ./stile_garmin/curve_licenza.txt
 
 
 #copia i file delle curve in sezioni
@@ -123,7 +123,7 @@ for infile in $uscitaimg/*.pbf
     --description="DTM5 Curve di livello" \
     --country-name="Italia" \
     --region-name="Piemonte" \
-    --copyright-message="$copycurve" \
+    --copyright-message="Curve di livello realizzate da $parola, basate sul dataset DTM 2009-2011 Piemonte ICE della Regione Piemonte" \
     --output-dir=$uscitaimg \
     --style-file=stile_garmin/dtm_curve \
     --show-profiles=1 \
@@ -133,16 +133,6 @@ for infile in $uscitaimg/*.pbf
   $infile
 
 done
-
-
-#cancella i file
-rm $uscitaimg/areas.*
-rm $uscitaimg/densities-out.txt
-rm $uscitaimg/temp*.*
-rm $uscitaimg/*.tmp
-rm $uscitaimg/*.pbf
-rm $uscitaimg/osm*.*
-rm $uscitaosm/*cut.pbf
 
 
 #cancella i file TYP nella directory stile_garmin/Typ
@@ -235,10 +225,9 @@ $GMT -S \
 rm $uscitaimg/finale/mappe/gmapsupp.img
 
 # E adesso bisogna patchare il file TDB affinchè contenga le corrette informazioni sul copyright
-# Per tutte le parti della mappa BDTRE - OSM- GPS
-
 python stile_garmin/tdbfile.py $uscitaimg/finale/mappe/mapset.tdb
 
 #cancella i file
 rm osmmap.tdb
 rm osmmap.img
+rm $uscitaimg/*.pbf

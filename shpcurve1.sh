@@ -63,7 +63,7 @@ echo
 echo -n "inserisci il tuo nome e cognome per l'attribuzione: "
 read parola
 
-sed -i "s/Licenziatario/$parola/" Licenza.txt
+sed -i "s/licenziatario/$parola/" Licenza.txt
 
 
 #converte il file Licenza.txt in PDF
