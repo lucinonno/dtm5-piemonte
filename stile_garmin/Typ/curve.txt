@@ -28,7 +28,7 @@ BorderWidth=0
 Xpm="0 0 1 0"
 "1 c #BD958B"
 String1=0x05,Curva ordinaria
-ExtendedLabels=N
+ExtendedLabels=Y
 FontStyle=NoLabel (invisible)
 CustomColor=No
 [end]

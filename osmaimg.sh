@@ -165,21 +165,20 @@ done
 DTM5_Curve=$(ls $uscitaimg/66120*.img)
 
 
-# make the target directory
-mkdir $uscitaimg/finale
-mkdir $uscitaimg/finale/etrex
-mkdir $uscitaimg/finale/64
-mkdir $uscitaimg/finale/mappe
+# creo le cartelle di destinazione
+mkdir $uscitaimg/etrex
+mkdir $uscitaimg/64
+mkdir $uscitaimg/mappe
 
 
 # unisco il file di ogni strato in un file IMG separato per i nuovi disposistivi come ad es. il gps64
-$GMT -j -o $uscitaimg/finale/64/Curve.img \
+$GMT -j -o $uscitaimg/64/Curve.img \
      -f 1811,1 -m "DTM5 Curve di livello" $DTM5_Curve ./stile_garmin/Typ/1811.TYP
 
     
 # gli strati ora vengono uniti in un unico gmapsupp.img per i vecchi dispositivi:
-$GMT -j -o $uscitaimg/finale/etrex/gmapsupp.img -m "DTM5-CURVE-GPS (GPS)" \
-     $uscitaimg/finale/64/Curve.img
+$GMT -j -o $uscitaimg/etrex/gmapsupp.img -m "DTM5-CURVE-GPS (GPS)" \
+     $uscitaimg/64/Curve.img
 
 
 # Ora creo versioni di divisione della mappa per l'utilizzo con Basecamp
@@ -191,7 +190,7 @@ java -jar $mkgmap \
   --overview-mapname="mapset"   \
   --country-name="Italia"       \
   --region-name="Piemonte"      \
-  --output-dir=$uscitaimg/finale/mappe     \
+  --output-dir=$uscitaimg/mappe     \
   --family-id=1811              \
   --draw-priority=10            \
   --family-name="DTM5 Curve di livello"    \
@@ -202,12 +201,12 @@ java -jar $mkgmap \
 
 # Il file tdb che è stato creato nel processo non funziona
 # E non ne abbiamo bisogno, quindi provvedo ad eliminarlo:
-rm $uscitaimg/finale/mappe/mapset.tdb
+rm $uscitaimg/mappe/mapset.tdb
 
 
 # Facio un gmapsupp.img intermedio, lo utilizziamo per poi dividerlo
 # nella creazione dei file per Basecamp:
-$GMT -j -o $uscitaimg/finale/mappe/gmapsupp.img \
+$GMT -j -o $uscitaimg/mappe/gmapsupp.img \
      -m "DTM5-CURVE-GPS Map (PC version)" \
      -f 1811,1		\
      $DTM5_Curve        \
@@ -218,16 +217,42 @@ $GMT -j -o $uscitaimg/finale/mappe/gmapsupp.img \
 # Per l'installazione su Windows, tra cui il file tdb
 $GMT -S \
      -f 1811,1 \
-     -o $uscitaimg/finale/mappe \
-     $uscitaimg/finale/mappe/gmapsupp.img
+     -o $uscitaimg/mappe \
+     $uscitaimg/mappe/gmapsupp.img
 
 # cancello il file intermedio gmapsupp.img
-rm $uscitaimg/finale/mappe/gmapsupp.img
+rm $uscitaimg/mappe/gmapsupp.img
 
 # E adesso bisogna patchare il file TDB affinchè contenga le corrette informazioni sul copyright
-python stile_garmin/tdbfile.py $uscitaimg/finale/mappe/mapset.tdb
+python stile_garmin/tdbfile.py $uscitaimg/mappe/mapset.tdb
 
 #cancella i file
 rm osmmap.tdb
 rm osmmap.img
+rm $uscitaimg/osmmap.tdb
 rm $uscitaimg/*.pbf
+rm $uscitaimg/*.img
+
+
+#copia la documentazione nella cartella dei file
+cp -r ./Documentazione ./$uscitaimg
+
+
+#si sposta nella cartella documentazione
+cd ./$uscitaimg/Documentazione
+
+
+#inseriscee il nome e cognome per l'attribuzione della licenza e lo inserisce nel file licenza.txt al posto di "Licenziatario"
+sed -i "s/licenziatario/$parola/" Licenza.txt
+
+
+#converte il file Licenza.txt in PDF
+unoconv -f pdf Licenza.txt
+
+
+#rimuove il file Licenza.txt
+rm Licenza.txt
+
+
+#ritorna nella cartella principale
+cd ..

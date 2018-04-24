@@ -41,14 +41,18 @@ look = minor_contour & ( name ~ '.*[05]00\.0+' )
 look = minor_contour & ( name ~ '.*[01]00\.0+' )
  { set look = medium_contour }
 
+
 look = minor_contour & ( name ~ '.*[02]00\.0+' )
  { set look = medium_contour }
+
 
 look = minor_contour & ( name ~ '.*[03]00\.0+' )
  { set look = medium_contour }
 
+
 look = minor_contour & ( name ~ '.*[04]00\.0+' )
  { set look = medium_contour }
+
 
 look = minor_contour & ( name ~ '.*[06]00\.0+' )
  { set look = medium_contour }
@@ -56,8 +60,10 @@ look = minor_contour & ( name ~ '.*[06]00\.0+' )
 look = minor_contour & ( name ~ '.*[07]00\.0+' )
  { set look = medium_contour }
 
+
 look = minor_contour & ( name ~ '.*[08]00\.0+' )
  { set look = medium_contour }
+
 
 look = minor_contour & ( name ~ '.*[09]00\.0+' )
  { set look = medium_contour }
