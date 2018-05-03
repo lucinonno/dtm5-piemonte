@@ -145,3 +145,5 @@ shpcurve.sh crea le curve in formato SHP
 shpaosm.sh converte le curve in formato OSM
 
 osmaimg.sh converte le curve in formato IMG
+
+Nota: prima di far partire "osmaimg.sh" occorre editare il file "tdbfile.py" nella cartella stile_garmin ed andare a sostituire la parola Licenziatario con il proprio nome e cognome.
