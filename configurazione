@@ -6,29 +6,52 @@ sdtm="DTM5"
 # Directory che contiene i file Tif del Dtm5 non zippati
 tif="TIF"
 
-# Directory che contiene i file SHP delle singole sezioni con le curve
-curve="CURVE-SHP"
 
-# Directory che contiene il file SHP della regione con le curve
-regione="CURVE-SHP_REGIONE"
 
 # Directory che contiene i file DTM, un file vrt che mosaica la regione
-dtmre="DTM_REGIONE"
+dtmre="DTM5_PIEMONTE"
 
-# Directory che contiene i file DTM, un file vrt per ogni sezione
-dtm="DTM_SEZIONE"
+
 
 # Directory che contiene i rilievi ombreggiati per la regione
-ombrere="OMBRE_REGIONE"
+ombrere="OMBRE_PIEMONTE"
 
-# Directory che contiene i rilievi ombreggiati delle varie sezioni
-ombre="OMBRE_SEZIONE"
 
-# Directory che contiene i file OSM delle curve
-uscitaosm="CURVE-OSM"
 
-# Directory che contiene i file IMG delle curve
-uscitaimg="CURVE-IMG"
+# Directory che contiene il file SHP delle province con le curve a 10 metri
+curve10pr="SHP10_PIEMONTE_PROVINCE"
+
+# Directory che contiene il file SHP della regione con le curve a 10 metri
+curve10re="SHP10_PIEMONTE"
+
+
+
+# Directory che contiene il file SHP delle province con le curve a 20 metri
+curve20pr="SHP20_PIEMONTE_PROVINCE"
+
+# Directory che contiene il file SHP della regione con le curve a 20 metri
+curve20re="SHP20_PIEMONTE"
+
+
+
+# Directory che contiene i file OSM delle curve a 10m
+uscitaosm10="CURVE_10m-OSM"
+
+# Directory che contiene i file OSM delle curve a 20m
+uscitaosm20="CURVE_20m-OSM"
+
+
+
+# Directory che contiene i file IMG delle curve a 10m
+uscitaimg10="CURVE_10m-IMG"
+
+# Directory che contiene i file IMG delle curve a 20m
+uscitaimg20="CURVE_20m-IMG"
+
+
+
+#inserimento del copyriht dei dati DTM5
+copyright="Curve di livello realizzate da $parola, basate sul dataset DTM 2009-2011 Piemonte ICE della Regione Piemonte"
 
 
 
@@ -41,16 +64,20 @@ ogr2osm=~/ogr2osm/ogr2osm.py
 osmosis=~/osmosis/bin/osmosis
 
 #Percorso completo di Mkgmap
-mkgmap=~/mkgmap-r3880/mkgmap.jar
+mkgmap=~/mkgmap-r4425/mkgmap.jar
 
 #Percorso completo di Splitter
-splitter=~/splitter-r580/splitter.jar
+splitter=~/splitter-r595/splitter.jar
 
 #Allocazione quantità Ram da utilizzare per splitter e mkgmap
 Xmx=-Xmx15000M
 
 #File di testo padre dei file typ
 TYPFILE_VERSION="curve"
+
+#File di testo padre dei file typ con dem
+TYPFILEdem_VERSION="curve_dem"
+
 
 #Percorso comleto di Gmaptool
 GMT=~/gmt/gmt

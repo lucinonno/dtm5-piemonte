@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# script per il download delle sezioni per la successiva lavorazione
+#Script per il download ed estrazione dei file delle sezioni per la successiva lavorazione
 
 
 #carica il file di configuraione delle variabili
@@ -33,9 +33,9 @@ cd $sdtm
 
 
 #inizia il ciclo di scaricamento e lo ripete finchè ci sono sezioni indicate nel file di scarico
-#puoi cambiare il file di scarico con uno di quelli presenti nella cartella oppure crearne uno tuo e salvarlo nella cartella, per far leggere il tuo oppure un'altro cambia il file Regione.txt qui sotto e metti quello che ti interessa
+#puoi cambiare il file di scarico con uno di quelli presenti nella cartella oppure crearne uno tuo e salvarlo nella cartella "Scarico", per far leggere il tuo oppure un'altro file cambia la scritta Regione.txt qui sotto con quello che ti interessa
 
-#legge il codice della sezione da scaricare 
+#legge il codice della sezione da scaricare indicato nel file di scarico
 cat ../Scarico/Regione.txt | \
 while read riga; do
 echo $riga

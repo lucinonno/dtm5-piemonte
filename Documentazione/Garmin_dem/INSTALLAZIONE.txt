@@ -1,0 +1,32 @@
+﻿In questa versione trovate le curve di livello della regione Piemonte ed il DTM creati partendo dai dati della “RIPRESA AEREA ICE 2009-2011 - DTM 5” della REGIONE PIEMONTE, è adatta ad essere utilizzata sul PC, visualizzata con uno dei seguenti software Garmin gratuiti:
+
+Mapsource
+
+Basecamp
+
+
+>>>>>>>>>>>>>> INSTALLAZIONE SU MAPSOURCE E BASECAMP <<<<<<<<<<<<<
+
+1 Estrarre la cartella contenuta nel file zip sul computer.
+
+2 Chiudere il programma Mapsource / Basecamp, se aperto.
+
+3 Entrare nella cartella e fare doppio click sul file install.bat
+
+
+Se l'installazione non riesce bisogna installare la mappa con i permessi di amministratore, cliccare con il tasto destro del mouse sul file install.bat e selezionare la voce “esegui come amministratore”, inserire la password se occorre.
+
+
+
+
+>>>>>>>>>>>> DISINSTALLAZIONE SU MAPSOURCE E BASECAMP <<<<<<<<<<<<
+
+Entrare nella cartella mappe e fare doppio click sul file:
+
+uninstall.bat
+
+Se la disinstallazione non riesce bisogna disinstallare la mappa con i permessi di amministratore, cliccare con il tasto destro del mouse sul file uninstall.bat e selezionare la voce “esegui come amministratore”, inserire la password se occorre.
+
+
+ATTENZIONE!!!!
+Prima di cancellare o spostare la cartella, eseguire la disinstallazione e la successiva installazione. Questo perché il file install.bat va a scrivere il relativo percorso sul registro di sistema, spostando semplicemente la cartella sia basecamp che mapsource non trovano correttamente il percorso.

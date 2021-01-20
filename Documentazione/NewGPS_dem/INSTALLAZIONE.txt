@@ -1,0 +1,16 @@
+﻿Questa versione è adatta ad essere caricata su dispositivi GPS Garmin che consentono di poter caricare più mappe e quindi non solo il classico gmapsupp.img.
+
+
+>>>>>>>>>>>>>>>>>>>>>> INSTALLAZIONE SUL DISPOSITIVO GPS <<<<<<<<<<<<<<<<<<<<<<
+
+1 Estrarre la cartella contenuta nel file zip sul computer.
+
+2 Rimuovere la microsd dal dispositivo GPS ed inserirla nel PC
+
+3 Creare Una cartella chiamata Garmin in via preferenziale sulla microsd del GPS, se il dispositivo non ne è provvisto utilizzare la memoria interna
+
+4 Copiare il file presente nella cartella dentro la cartella Garmin (attenzione, se all'interno della cartella esiste già il file gmapsupp.img, questo verrà sovrascritto. Conviene fare una copia del file presente sulla sceda di memoria prima di sovrascriverlo).
+
+4 Rimuovere la microsd dal computer ed inserirla nel GPS
+
+5 Accendere il gps e la mappa verrà caricata

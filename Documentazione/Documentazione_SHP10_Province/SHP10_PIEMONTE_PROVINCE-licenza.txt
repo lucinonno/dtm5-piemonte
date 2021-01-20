@@ -1,0 +1,12 @@
+“Documento realizzato da licenziatario, basato sul dataset DTM 2009-2011 Piemonte ICE della Regione Piemonte”
+
+
+La titolarita' piena ed esclusiva del documento 'DTM 2009-2011 Piemonte ICE' e' di Regione Piemonte (ai sensi della L. 633/41 e s.m.i.).
+Regione Piemonte autorizza la libera e gratuita consultazione, estrazione, riproduzione e modifica dei dati in essa contenuti da parte di chiunque vi abbia interesse per qualunque fine, purche' nel rispetto dei termini della licenza Creative Commons – Attribuzione 4.0 Italia (testo integrale: https://creativecommons.org/licenses/by/4.0/legalcode.it)
+
+https://creativecommons.org/licenses/by/4.0/deed.it
+
+Eventuali inesattezze o errori potranno essere segnalati al seguente indirizzo di posta elettronica cartografico@regione.piemonte.it, gestito dalla Direzione Ambiente e governo del territorio, Settore Sistema informativo territoriale e ambientale.
+Una copia di qualunque documento rielaborato potrà essere inviata all’indirizzo di posta elettronica cartografico@regione.piemonte.it, oppure all'indirizzo: Direzione Ambiente e governo del territorio, Settore Sistema informativo territoriale e ambientale, Corso Bolzano, 44 - 10121 TORINO.
+
+SHP10_PIEMONTE_PROVINCE è rilasciato con licenza Creative Commons CC-BY-NC-SA 3 (Attribuzione - Non commerciale - Condividi allo stesso modo 3.0 Italia), il testo completo è disponibile all'indirizzo https://creativecommons.org/licenses/by-nc-sa/3.0/it/legalcode

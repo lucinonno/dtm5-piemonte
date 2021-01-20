@@ -1,0 +1,60 @@
+﻿Questa versione è adatta ad essere caricata su molti dispositivi GPS Garmin.
+
+
+>>>>>>>>>>>>>>INSTALLAZIONE SUL DISPOSITIVO GPS<<<<<<<<<<<<<<<<
+
+1 Estrarre la cartella contenuta nel file zip sul computer.
+
+2 Rimuovere la microsd dal dispositivo GPS ed inserirla nel PC
+
+3 Creare Una cartella chiamata Garmin in via preferenziale sulla microsd del GPS, se il dispositivo non ne è provvisto utilizzare la memoria interna
+
+4 Copiare il file gmapsupp.img dentro la cartella Garmin (attenzione, se all'interno della cartella esiste già il file gmapsupp.img, questo verrà sovrascritto. Conviene fare una copia del file presente sulla sceda di memoria prima di sovrascriverlo).
+
+5 Rimuovere la microsd dal computer ed inserirla nel GPS
+
+6 Accendere il gps e la mappa verrà caricata
+
+
+
+
+
+>>>>>>>>>>>>>>>>>> INSTALLAZIONE SU QMAPSHACK <<<<<<<<<<<<<<<<<<<<
+
+1 Estrarre la cartella contenuta nel file zip sul computer.
+
+2 Aprire QMapShack
+
+3 Dal menù File, scegliere "Setup Map Paths"
+
+3a Nella finestra che si apre cliccare sul segno +
+
+3b Selezionare quindi la cartella appena scompattata e confermare con "Apri" in alto a destra
+
+3c Cliccare sul bottone "OK" nella finestra "Setup Map Paths"
+
+4 Nella finestra a sinistra relativa alle mappe cliccare con il tasto destro del mouse su gmapsupp e selezionare la voce "Activate". A questo punto le curve di livello sono visualizzate.
+
+
+QMapShack non legge/visualizza il DTM nel formato Garmin, potete utilizzare un DTM che già utilizzate o utilizzare DTM5_Piemonte che copre tutta la regione Piemonte.
+
+
+
+>>>>>>>>>>>>>>>>> INSTALLAZIONE DTM SU QMAPSHACK <<<<<<<<<<<<<<<<<
+
+1 Estrarre la cartella contenuta nel file zip sul computer.
+
+2 Aprire il programma Qmapshack
+
+3 Andare nel menù a tendina "File" nella parte superiore e selezionare la voce "Setup DEM Paths"
+
+4 Nella finestra che si apre selezionare il + sulla destra, andare a scegliere la cartella "3D" all'interno della cartella "DTM5_PIEMONTE" e cliccare su Scegli.
+
+5 Una volta confermata e scelta la cartella premere OK
+
+6 A questo punto cliccare con il tasto destro del mouse sulla voce “DTM5 Piemonte” che appare nella finestra relativa ai dati DEM, nel riquadro che appare occorre cliccare la voce “Activate”
+7 Per visualizzare i rilievi 3D occorre ora cliccare con il tasto sinistro la freccina a sinistra a fianco della voce Piemonte e nella finestra che si apre selezionare la voce “Hillshading” ed i rilievi sono visualizzati.
+
+
+P.s. Al posto della regione intera è possibile attivare una o più
+province seguendo la stessa procedura ai punti 6 e 7

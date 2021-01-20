@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#file per creare il rilievo ombreggiato in un mosaico regionale
+#Script per creare il rilievo ombreggiato in un mosaico regionale
 
 
 #carica il file di configuraione delle variabili
@@ -29,6 +29,13 @@ else
 fi
 
 
+#chiede il nome e cognome per l'attribuzione della licenza
+echo
+echo
+echo -n "inserisci il tuo nome e cognome per l'attribuzione: "
+read parola
+
+
 #rimuove i files eventualmente presenti nella cartella
 rm -r $ombrere/*
 
@@ -44,24 +51,34 @@ cd $tif
 #crea un file vrt unico per la regione
 echo
 echo "Creo il file vrt per l'intera regione"
-gdalbuildvrt OMBRE_regione.vrt *.tif -a_srs "EPSG:32632"
+gdalbuildvrt OMBRE_Piemonte.vrt *.tif -a_srs "EPSG:32632"
 
 
 #crea il rilievo ombreggiato in un unico file
 echo
 echo "Creo il rilievo ombreggiato per l'intera regione"
-gdaldem hillshade OMBRE_regione.vrt ../$ombrere/OMBRE_cut.tif -b 1
+gdaldem hillshade OMBRE_Piemonte.vrt ../$ombrere/OMBRE_cut.tif -b 1
 
 
-#si sposta nella cartella di destinazione
-cd ../$ombrere
+#si sposta nella cartella di servizio
+cd ../Servizio
 
 
-#ritaglia il rilievo ombreggiato sul confine della regione piemonte, all'interno dell cartella Taglio sono presenti anche i file delle province,
-#è possibile cambiare il poligono di taglio cambiando il nome Piemonte.shp con uno di quelli contenuti nella cartella
-echo
-echo "Taglio il rilievo ombreggiato oltre il confine della regione"
-gdalwarp -ot Float32 -of GTiff -cutline ../Taglio/Shp/Piemonte.shp -crop_to_cutline -dstnodata 0 -co COMPRESS=PACKBITS OMBRE_cut.tif OMBRE_regione.tif
+#taglia il file della regione sul confine della provincia e cre file vrt
+for filename in $(ls *.txt); do
+
+	# prendo solo il nome del file
+	n=$(echo $filename | awk -F \. {'print $1'})
+	#taglia il file sul confine della provincia
+	echo
+	echo "Taglio il rilievo ombreggiato sul confine della provincia di $n"
+	gdalwarp -ot Float32 -of GTiff -cutline ../Taglio/Shp/$n.shp -crop_to_cutline -dstnodata 0 -co COMPRESS=DEFLATE -co PREDICTOR=2 ../$ombrere/OMBRE_cut.tif ../$ombrere/OMBRE_$n.tif
+	#crea il file vrt per la provincia
+	echo
+	echo "Creo il file vrt per il riilievo ombreggiato della provincia di $n"
+	gdalbuildvrt ../$ombrere/OMBRE_$n.vrt ../$ombrere/OMBRE_$n.tif -a_srs "EPSG:32632"
+
+done
 
 
 #si sposta nella cartella principale
@@ -73,29 +90,38 @@ rm $tif/*.vrt
 rm $ombrere/*cut.tif
 
 
+#si sposta nella cartella della regione
+cd $ombrere
+
+
+#crea un file vrt unico per la regione
+echo
+echo "Creo il file vrt per l'intera regione"
+gdalbuildvrt OMBRE_Piemonte.vrt *.tif -a_srs "EPSG:32632"
+
+
+#ritorna nella cartella principale
+cd ..
+
+
 #copia la documentazione nella cartella dei file
-cp -r ./Documentazione ./$ombrere/
+cp -r ./Documentazione/Documentazione_OMBRE_Piemonte ./$ombrere/Documentazione
 
 
 #si sposta nella cartella documentazione
 cd ./$ombrere/Documentazione
 
 
-#chiede il nome e cognome per l'attribuzione della licenza e lo inserisce nel file licenza.txt al posto di "Licenziatario"
-echo
-echo
-echo -n "inserisci il tuo nome e cognome per l'attribuzione: "
-read parola
-
-sed -i "s/licenziatario/$parola/" Licenza.txt
+#inserisce il nome e cognome per l'attribuzione della licenza nel file OMBRE_Piemonte-licenza.txt al posto di "Licenziatario"
+sed -i "s/licenziatario/$parola/" OMBRE_Piemonte-licenza.txt
 
 
-#converte il file Licenza.txt in PDF
-unoconv -f pdf Licenza.txt
+#converte il file OMBRE_PIEMONTE-licenza.txt in PDF
+unoconv -f pdf OMBRE_PIEMONTE-licenza.txt
 
 
-#rimuove il file Licenza.txt
-rm Licenza.txt
+#rimuove il file OMBRE_PIEMONTE-licenza.txt
+rm OMBRE_Piemonte-licenza.txt
 
 
 #ritorna nella cartella principale
